@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.specify\\\\scripts\\\\powershell\\\\create-new-feature.ps1 -Json -Number 1 -ShortName \"auth-security-layer\" \"/sp.specify Authentication & Security Layer \\(Better Auth + JWT\\)\n\nTarget audience:\n- Hackathon reviewers evaluating security and user isolation\n- Developers integrating Next.js auth with FastAPI\n\nFocus:\n- Secure user authentication using Better Auth\n- JWT-based communication between frontend and FastAPI\n- Strict per-user authorization for all API access\n\nSuccess criteria:\n- Users can signup and signin via Better Auth\n- JWT is issued after login and attached to every API request\n- FastAPI verifies JWT on every request\n- Requests without valid JWT return 401 Unauthorized\n- Backend extracts user identity from token\n- Users can only access their own tasks\n\nFunctional scope:\n- Better Auth configuration with JWT plugin\n- Shared secret via BETTER_AUTH_SECRET\n- Frontend token handling and header attachment\n- FastAPI JWT verification middleware\n- User identity extraction from token payload\n\nNon-functional requirements:\n- Stateless authentication \\(no backend sessions\\)\n- Token expiration supported\n- Environment-variable\")",
+      "Bash(dir:*)",
+      "Bash(npm install:*)",
+      "Bash(npx jest:*)",
+      "Bash(test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(taskkill:*)",
+      "Bash(python -m uvicorn:*)",
+      "Bash(python:*)",
+      "Bash(D:\\\\five_phases_todo\\\\phase_2\\\\backend\\\\venv\\\\Scripts\\\\python -m uvicorn:*)",
+      "Bash(cmd /c:*)",
+      "Bash(powershell:*)",
+      "Bash(ls -la \"D:\\\\five_phases_todo\\\\phase_2\\\\frontend\\\\src\\\\app\"\" && echo \"---AUTH---\" && ls -la \"D:five_phases_todophase_2frontendsrcappauth\"\")"
+    ]
+  }
+}

@@ -1,55 +1,72 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: 1.0.0 → 1.1.0
+- Modified principles: All 6 principles completely revised
+- Added sections: Core Principles (6), Technical Constraints, Security Constraints, Process Constraints
+- Removed sections: None
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md (updated)
+  - ✅ .specify/templates/spec-template.md (updated)
+  - ✅ .specify/templates/tasks-template.md (updated)
+- Follow-up TODOs: None
+-->
+# Todo Full-Stack Web Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Spec-First Development
+All implementation must strictly follow written specifications; No code implementation before complete feature specification is documented and approved; Every feature requirement must be traceable to a written spec with acceptance criteria.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### No Manual Coding
+All code must be generated via Claude Code agents; No hand-written code patches or fixes allowed; All development must follow the agentic workflow with explicit task breakdowns; Manual overrides are prohibited except for emergency rollbacks.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Deterministic Behavior
+Identical inputs must produce identical outputs; System behavior must be predictable and reproducible; State management must be explicit and well-defined; All processes must be idempotent where possible.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Security by Design
+Authentication and authorization must be enforced at every layer; User data isolation is mandatory; All API endpoints require proper authentication; Security controls must be built-in, not added later; Defense in depth approach required.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Production Realism
+Real database systems must be used from the start; Authentication systems must be production-grade; API patterns must follow industry standards; Secrets must be managed via environment variables; Statelessness must be maintained where applicable.
 
-### [PRINCIPLE_6_NAME]
+### Separation of Concerns
+Clear boundaries between frontend (Next.js), backend (FastAPI), database (Neon PostgreSQL), and auth (Better Auth); Services must communicate only via documented REST APIs; Cross-cutting concerns must be properly abstracted; Loose coupling and high cohesion principles applied.
 
+## Technical Constraints
+- Frontend: Next.js 16+ with App Router
+- Backend: Python FastAPI
+- ORM: SQLModel
+- Database: Neon Serverless PostgreSQL
+- Authentication: Better Auth (JWT enabled)
+- API style: RESTful, JSON-only
+- Auth header: Authorization: Bearer <JWT>
+- Backend must be stateless (no session storage)
 
-[PRINCIPLE__DESCRIPTION]
+## Security Constraints
+- All API routes require a valid JWT
+- Requests without or with invalid JWT return 401 Unauthorized
+- User ID must be derived from JWT, not trusted from client input
+- API queries must always filter by authenticated user ID
+- Shared JWT secret configured via BETTER_AUTH_SECRET in all services
+- Tokens must support expiration
+- Task ownership must be enforced at database and API levels
+- User data isolation (strict per-user access control)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Process Constraints
+Workflow must strictly follow:
+1. Write spec
+2. Generate plan
+3. Break into tasks
+4. Implement via Claude Code
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- No skipping steps
+- No hand-written patches or fixes
+- All iteration must follow the established workflow
+- Frontend and backend must communicate only via documented REST APIs
+- Environment variables used for all secrets and credentials
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices. All development work must comply with these principles. Amendments require explicit documentation, approval process, and migration plan. All pull requests and reviews must verify constitutional compliance. All API endpoints must be explicitly defined before implementation. Authentication must use JWT-based stateless verification.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2026-02-06 | **Last Amended**: 2026-02-06
